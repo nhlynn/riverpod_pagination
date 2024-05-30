@@ -53,12 +53,13 @@ class ImageListController extends StateNotifier<ImageState> {
                 maxLoaded: true,
                 loading: false,
                 errorMessage: 'No Data Found!');
+          }else {
+            state = state.copyWith(
+                imageList: [...state.imageList, ...imageList],
+                loading: false,
+                errorMessage: '',
+                page: state.page + 1);
           }
-          state = state.copyWith(
-              imageList: [...state.imageList, ...imageList],
-              loading: false,
-              errorMessage: '',
-              page: state.page + 1);
         } else {
           state = state.copyWith(
               loading: false, errorMessage: '${response.statusCode} Error');
